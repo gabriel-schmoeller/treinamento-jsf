@@ -1,6 +1,6 @@
 ## Objetivo
 
-Desenvolvimento de um sistema de gerenciamento de biblioteca utilizando java, maven, JSF e hibernate
+Desenvolvimento de um sistema de gerenciamento de biblioteca utilizando java, maven, tomcat, JSF (PrimeFaces) e hibernate
 
 ## Sistema de gerenciamento de Biblioteca
 
@@ -142,11 +142,17 @@ Arquivo de configurações do maven (pom.xml)
     <groupId>nome.sobrenome</groupId>
     <artifactId>treinamento-jsf</artifactId>
     <version>0.0.1</version>
+    <packaging>war</packaging>
+    <name>Aplicação de treinamento jsf</name>
   
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
+    
+    <repositories>
+  
+    </repositories>
   
     <dependencies>
   
@@ -154,8 +160,12 @@ Arquivo de configurações do maven (pom.xml)
  </project>
  ```
  - `<groupId>`: Nome da pessoa ou empresa responsável pelo projeto
- - `<artifactId>`: Nome do projeto
+ - `<artifactId>`: Nome do projeto (deve ser único entre os projetos desse groupId)
  - `<version>`: Versão do projeto
+ - `<packaging>`: Tipo de empacotamento jar (desktop), war (web), ear, zip... que será feito ao rodar o comando `package`
+ - `<name>`: Nome legível da aplicação
+ - `<repositories>`: dentro desta tag devem ser colocadas as tags <repository>, que servem para referenciar um
+ repositório externo, ao qual o maven ira tentar procurar as dependências antes de baixar do repositório global pré configurado  
  - `<dependencies>`: dentro desta tag devem ser colocadas as tags <dependency> das dependências
  que precisar utilizar no projeto
 
@@ -167,3 +177,32 @@ Comandos:
  que por padrão e um .jar
  - `mvn install`: executa os comandos anteriores e coloca o arquivo comprimido dentro do seu repositório local,
  normalmente encontrado em `C:\Users\<seu_usuario>\.m2\repository`
+
+#### JSF (PrimeFaces)
+
+Para o desenvolvimento de tela com JSF, utilize o PrimeFaces. A documentação com os componentes existentes
+estão em: https://www.primefaces.org/showcase/
+
+Um bom tutorial para começar um projeto com PrimeFaces: https://www.mkyong.com/jsf2/primefaces/primefaces-hello-world-example/
+
+#### Tomcat
+
+Para rodar um projeto java web, é necessário um servidor de aplicação (Jboss, Wildfly, GlassFish, WebLogic...).
+Para este projeto recomendo o uso de Tomcat, pela simplicidade.
+
+ 1. Faça o download do tomcat em: http://tomcat.apache.org/download-80.cgi (Binary Distributions > Core > zip)
+ 2. Extraia para um diretório de sua preferência
+ 3. No intellij confirmar se o plugin do tomcat esta ativado: "File > Settings > Plugins > Tomcat and TomEE integration"
+ 4. Com o plugin ativado. Na tela principal do Intellij va no canto superior direto em uma pequena combobox
+ e entre em "Edit Configurations"
+ 5. Clique no icone verde de "+" > Tomcat Server > Local
+ 6. Clique no botão "Configure..."  ao lado do campo "Application server"
+ 7. No campo "Tomcat Home" coloque o caminho onde o tomcat foi extraido. Ex: `C:\Users\usuario\workspace\apache-tomcat-8.5.12`
+ 8. Após o intellij deve preeencher os outros campos automaticamente. Feito isso apenas pressione "OK"
+ 9. Com Essas alterações, altere o "Name" e de um "Apply"
+ 10. O passo a seguir só poderá ser feito se já tiver configurado o pom.xml pelo menos com `<packaging>` e `<name>`
+ 11. Após estas configurações vá na aba "Deployment > + (verde a direita) > Artifact..."
+ 12. Nesta tela selecione o registro equivalente a "<artifactId>:war exploded" e de "OK" e "OK" para voltar a tela inicial da IDE
+ 13. Com estas configurações concluidas, basta rodar o servidor de aplicação para fazer a aplicação funcionar, para fazer isto
+ va novamente na combobox que fomos no passo 4 e selecione o registro contendo o nome que foi salvo no passo 9
+ 14. Por fim clique na seta verde ao lado da combobox anterior e o servidor deve subir junto com a aplicação
