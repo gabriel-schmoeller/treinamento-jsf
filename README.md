@@ -117,3 +117,53 @@ Fluxo de trabalho:
  <branch_remoto> do repositório remoto
  - `git push origin <branch>` | semelhante ao comando anterior, porém se o nome do branch local e remoto forem exatamente
  o mesmo é possível informar apenas o nome do <branch>
+
+#### Maven
+Estrutura de diretórios recomendada:
+ ```
+ treinamento-jsf
+ +--src
+ |  +--main
+ |     +--java
+ |     +--resources
+ +--pom.xml
+ ```
+ - java: diretório onde ficaram os códigos fontes em java
+ - resources: diretório onde ficaram os recursos do projeto que não são java.
+ Ex de extensões: .xml (normalmente de configuração), .properties (normalmente de configuração), .html, .xhtml, .imagens, .css
+ - pom.xml: arquivo de configurações do maven (https://maven.apache.org/pom.html)
+
+Arquivo de configurações do maven (pom.xml)
+ ```xml
+ <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+  
+    <groupId>nome.sobrenome</groupId>
+    <artifactId>treinamento-jsf</artifactId>
+    <version>0.0.1</version>
+  
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+  
+    <dependencies>
+  
+    </dependencies>
+ </project>
+ ```
+ - `<groupId>`: Nome da pessoa ou empresa responsável pelo projeto
+ - `<artifactId>`: Nome do projeto
+ - `<version>`: Versão do projeto
+ - `<dependencies>`: dentro desta tag devem ser colocadas as tags <dependency> das dependências
+ que precisar utilizar no projeto
+
+Comandos:
+ - `mvn clean`: deleta a pasta target a qual os arquivos compilados se encontram
+ - `mvn compile`: executa os comandos anteriores, baixa as dependências necessárias e compila as classes java do
+ projeto e coloca os arquivos .class dentro da pasta target
+ - `mvn package`: executa os comandos anteriores e coloca os arquivos .class dentro de um arquivo comprimido,
+ que por padrão e um .jar
+ - `mvn install`: executa os comandos anteriores e coloca o arquivo comprimido dentro do seu repositório local,
+ normalmente encontrado em `C:\Users\<seu_usuario>\.m2\repository`
