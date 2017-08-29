@@ -1,13 +1,13 @@
 /**
  * Created by Lais Lodi on 28/08/2017.
  */
-public class Client {
+public class Clients {
     private static int id;
     private String name;
     private String cpf;
     private String email;
 
-    public Client(int id, String name, String cpf, String email) {
+    public Clients(int id, String name, String cpf, String email) {
         this.id = id;
         this.name = name;
         this.cpf = cpf;
@@ -18,7 +18,7 @@ public class Client {
         return id;
     }
     public static void setId(int id) {
-        Client.id = id;
+        Clients.id = id;
     }
     public String getName() {
         return name;
