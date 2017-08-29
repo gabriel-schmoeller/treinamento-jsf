@@ -206,3 +206,29 @@ Para este projeto recomendo o uso de Tomcat, pela simplicidade.
  13. Com estas configurações concluidas, basta rodar o servidor de aplicação para fazer a aplicação funcionar, para fazer isto
  va novamente na combobox que fomos no passo 4 e selecione o registro contendo o nome que foi salvo no passo 9
  14. Por fim clique na seta verde ao lado da combobox anterior e o servidor deve subir junto com a aplicação
+
+#### Docker
+
+O docker é basicamente uma maquina virtual apenas com o essencial para rodar programas específicos.
+
+Para este projeto recomendo o uso de docker para a utilização do banco de dados Oracle,
+desta forma não precisaremos instalar um oracle na nossa maquina local e nem criar uma maquina virtual inteira apenas para ele.
+
+Para windows recomendo inicialmente o uso do docker toolbox: https://www.docker.com/products/docker-toolbox
+
+Após fazer o download e instalação execute o "docker quickstart terminal", após sua primeira execução ele ira começar
+uma serie de configurações em sua maquina, assim que ele tiver terminado vamos para o próximo passo.
+
+Com o "docker quickstart terminal" aberto e configurado vamos baixar uma imagem de Oracle: https://hub.docker.com/r/wnameless/oracle-xe-11g/
+
+Para baixar a imagem acima digite no terminal o "Docker Pull Command" que se encontra no canto superior direto da pagina:
+`docker pull wnameless/oracle-xe-11g`
+
+Após a finalização dos downloads você deve ter disponível em sua maquina uma imagem de oracle para o oracle a partir
+disso, siga a lista de comandos a seguir:
+
+ - `docker images`: listar as imagens disponíveis para uso
+ - `docker run -d -p 1521:1521 wnameless/oracle-xe-11g`: roda uma instância de uma maquina virtual baseada na imagem
+ - `docker ps -a`: lista as instâncias de docker que já foram executadas ou estão executando
+ - `docker stop <container id>`: para a execução de uma instância
+ - `docker start <container id>`: reinicia a execução de uma instância parada
