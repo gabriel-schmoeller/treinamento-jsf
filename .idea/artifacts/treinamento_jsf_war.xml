@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="treinamento-jsf:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="treinamento-jsf-0.0.1.war">
+      <element id="artifact" artifact-name="treinamento-jsf:war exploded" />
+    </root>
+  </artifact>
+</component>

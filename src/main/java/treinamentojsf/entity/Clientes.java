@@ -1,15 +1,17 @@
+package treinamentojsf.entity;
+
 /**
  * Created by Lais Lodi on 28/08/2017.
  */
-public class Clients {
+public class Clientes {
     private static int id;
-    private String name;
+    private String nome;
     private String cpf;
     private String email;
 
-    public Clients(int id, String name, String cpf, String email) {
+    public Clientes(int id, String nome, String cpf, String email) {
         this.id = id;
-        this.name = name;
+        this.nome = nome;
         this.cpf = cpf;
         this.email = email;
     }
@@ -18,13 +20,13 @@ public class Clients {
         return id;
     }
     public static void setId(int id) {
-        Clients.id = id;
+        Clientes.id = id;
     }
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String name) {
+        this.nome = name;
     }
     public String getCpf() {
         return cpf;
@@ -42,7 +44,7 @@ public class Clients {
     @Override
     public String toString() {
         return "Cliente: " +
-                "nome: '" + name + '\'' +
+                "nome: '" + nome + '\'' +
                 ", CPF: '" + cpf + '\'' +
                 ", email: '" + email + '\'';
     }
