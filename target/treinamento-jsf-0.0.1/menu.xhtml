@@ -1,0 +1,21 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+    <p:menu toggleable="true">
+        <p:submenu label="Livros">
+            <p:menuitem value="Cadastrar" outcome="cadastrarLivro" icon="item_book_mostard_add.ico" />
+            <p:menuitem value="Apagar" outcome="apagarLivro" icon="item_book_mostard_delete.ico"/>
+            <p:menuitem value="Pesquisar" outcome="pesquisarLivro" icon="item_book_mostard_search.ico"/>
+        </p:submenu>
+        <p:submenu label="Empréstimos">
+            <p:menuitem value="Novo Empréstimo" outcome="novoEmprestimo"/>
+            <p:menuitem value="Devolvução" outcome="devolucao"/>
+        </p:submenu>
+        <p:submenu label="Clientes">
+            <p:menuitem value="Cadastrar" outcome="cadastrarCliente" icon="user_add.ico"/>
+            <p:menuitem value="Apagar" outcome="apagarCliente" icon="user_delete.ico"/>
+            <p:menuitem value="Pesquisar" outcome="pesquisarCliente" icon="user_search.ico"/>
+        </p:submenu>
+    </p:menu>
+</ui:composition>

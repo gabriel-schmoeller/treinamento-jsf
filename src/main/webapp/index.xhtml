@@ -7,36 +7,24 @@
       xmlns:p="http://primefaces.org/ui">
 
     <h:head>
-        <title>GerenBib</title>
+        <title>#{constantes.titulo}</title>
     </h:head>
     <h:body>
-        <h1>Sistema de Gerenciamento de Biblioteca - GerenBib</h1>
+        <h1>#{constantes.h1}</h1>
 
         <h:form>
-            <p:menu toggleable="true">
-                <p:submenu label="Livros">
-                    <p:menuitem value="Cadastrar" outcome="cadastrarLivro" icon="item_book_mostard_add.ico" />
-                    <p:menuitem value="Apagar" outcome="apagarLivro" icon="item_book_mostard_delete.ico"/>
-                    <p:menuitem value="Pesquisar" outcome="pesquisarLivro" icon="item_book_mostard_search.ico"/>
-                </p:submenu>
-                <p:submenu label="Empréstimos">
-                    <p:menuitem value="Novo Empréstimo" outcome="novoEmprestimo"/>
-                    <p:menuitem value="Devolvução" outcome="devolucao"/>
-                </p:submenu>
-                <p:submenu label="Clientes">
-                    <p:menuitem value="Cadastrar" outcome="cadastrarCliente" icon="user_add.ico"/>
-                    <p:menuitem value="Apagar" outcome="apagarCliente" icon="user_delete.ico"/>
-                    <p:menuitem value="Pesquisar" outcome="pesquisarCliente" icon="user_search.ico"/>
-                </p:submenu>
-            </p:menu>
+            <h:panelGrid columns="2" cellpadding="20">
 
-            <p:panel id="basic" header="Basic" footer="Movie Details" style="margin-bottom:20px">
-                <h:panelGrid columns="2" cellpadding="10">
-                    <p:graphicImage name="demo/images/godfather/godfather1.jpg" />
-                    <h:outputText
-                            value="The story begins as Don Vito Corleone..." />
-                </h:panelGrid>
-            </p:panel>
+                <ui:include src="menu.xhtml" />
+
+                <p:panel id="basic" header="#{constantes.msgBoasVindas}" style="margin-bottom:20px">
+                    <h:panelGrid columns="2" cellpadding="10">
+                        <p:graphicImage name="demo/images/godfather/godfather1.jpg" />
+                        <h:outputText
+                                value="The story begins as Don Vito Corleone..." />
+                    </h:panelGrid>
+                </p:panel>
+            </h:panelGrid>
         </h:form>
 
     </h:body>
