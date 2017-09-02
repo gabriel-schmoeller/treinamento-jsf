@@ -20,6 +20,7 @@
             <url>http://repository.primefaces.org</url>
             <layout>default</layout>
         </repository>
+
     </repositories>
 
     <dependencies>
@@ -69,5 +70,19 @@
             <artifactId>el-impl</artifactId>
             <version>2.2</version>
         </dependency>
+
+        <!-- ORACLE database driver -->
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.2.10.Final</version>
+        </dependency>
+
     </dependencies>
 </project>

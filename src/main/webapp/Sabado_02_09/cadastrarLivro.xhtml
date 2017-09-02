@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>#{constantes.titulo}</title>
+</h:head>
+<h:body>
+    <h1>#{constantes.h1}</h1>
+
+    <h:form>
+        <p:messages id="message" showDetail="true" autoUpdate="true" closable="true" />
+        <p:panelGrid columns="2">
+
+            <ui:include src="menu.xhtml"/>
+
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Nome: " for="inNome"/>
+                <p:inputText id="inNome" value="#{cadLiv.livro.nome}"/>
+
+                <p:outputLabel value="Gênero: " for="inGenero"/>
+                <p:inputText id="inGenero" value="#{cadLiv.livro.genero}"/>
+
+                <p:outputLabel value="Resumo: " for="inResumo"/>
+                <p:inputTextarea id="inResumo" cols="22" rows="6" value="#{cadLiv.livro.resumo}"/>
+
+                <p:outputLabel for="inDataPub" value="Data de Publição:" />
+                <p:calendar id="inDataPub" value="#{cadLiv.livro.dataPublicacao}" />
+
+                <p:commandButton value="Cadastrar" actionListener="#{cadLiv.salvar}" ajax="false"/>
+            </p:panelGrid>
+        </p:panelGrid>
+    </h:form>
+
+</h:body>
+</html>
