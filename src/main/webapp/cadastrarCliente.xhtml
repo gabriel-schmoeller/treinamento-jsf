@@ -13,9 +13,31 @@
     <h1>#{constantes.h1}</h1>
 
     <h:form>
-        <h:outputLabel for="name" value="Standard Label:" />
-        <p:inputText id="name" value="#{editorMB.value}"/>
-        <p:button value="Texto" />
+        <h:panelGrid columns="2" cellpadding="20">
+
+            <ui:include src="menu.xhtml" />
+
+            <p:panel id="basic" header="#{constantes.cadClientes}" footer="#{constantes.cadClientes}" style="margin-bottom:20px">
+                <h:panelGrid id="painelGrid" columns="2" cellpadding="10">
+                    <p:outputLabel id="lblNome" for="inNome" value="Nome: "/>
+                    <p:inputText id="inNome" size="70" maxlength="100" placeholder="Nome" value="#{cadCli.cliente.nome}" />
+
+                    <p:outputLabel id="lblCpf" for="inCpf" value="CPF: "/>
+                    <p:inputMask id="inCpf" mask="999.999.999-99" value="#{cadCli.cliente.cpf}" />
+
+                    <p:outputLabel id="lblTel" for="inTel" value="Telefone: "/>
+                    <p:inputMask id="inTel" mask="(99)99999-9999" size="70" placeholder="Telefone" value="#{cadCli.cliente.telefone}"/>
+
+                    <p:outputLabel id="lblEmail" for="inEmail" value="E-mail: "/>
+                    <p:inputText id="inEmail">
+                        <p:keyFilter regEx="/[a-z0-9_\.\-@]/i"/>
+                    </p:inputText>
+                    <!--<p:inputText id="inEmail" size="70" placeholder="E-mail" value="#{cadCli.cliente.email}"/>-->
+
+                    <p:commandButton id="btnClientesSalvar" value="Salvar" actionListener="#{cadCli.salvar}" />
+                </h:panelGrid>
+            </p:panel>
+        </h:panelGrid>
     </h:form>
 
 </h:body>

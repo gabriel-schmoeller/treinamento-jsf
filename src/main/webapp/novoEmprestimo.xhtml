@@ -13,9 +13,19 @@
     <h1>#{constantes.h1}</h1>
 
     <h:form>
-        <h:outputLabel for="name" value="Standard Label:" />
-        <p:inputText id="name" value="#{editorMB.value}"/>
-        <p:button value="Texto" />
+        <h:panelGrid columns="2" cellpadding="20">
+            <ui:include src="menu.xhtml" />
+
+            <p:panel id="basic" header="#{constantes.cadEmprest}" footer="#{constantes.cadEmprest}" style="margin-bottom:20px">
+                <h:panelGrid columns="2" cellpadding="10">
+                    <!--
+                    Label: Titulo do Livro: TextBox para nome do livro
+                    Label: Genero do Livro: TextBox para genero do livro
+                    Label: Disponibilidade do Livro: Checkbox para disponibilidade do livro
+                    -->
+                </h:panelGrid>
+            </p:panel>
+        </h:panelGrid>
     </h:form>
 
 </h:body>

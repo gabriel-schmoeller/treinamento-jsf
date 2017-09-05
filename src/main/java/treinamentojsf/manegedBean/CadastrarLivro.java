@@ -1,4 +1,4 @@
-package treinamentojsf.manegedBeans;
+package treinamentojsf.manegedBean;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

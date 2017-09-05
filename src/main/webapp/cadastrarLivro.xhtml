@@ -14,14 +14,23 @@
 
     <h:form>
         <h:panelGrid columns="2" cellpadding="20">
-
             <ui:include src="menu.xhtml" />
 
-            <p:panel id="basic" header="Basic" footer="Movie Details" style="margin-bottom:20px">
-                <h:panelGrid columns="2" cellpadding="10">
-                    <p:graphicImage name="demo/images/godfather/godfather1.jpg" />
-                    <h:outputText
-                            value="The story begins as Don Vito Corleone..." />
+            <p:panel id="basic" header="#{constantes.cadLivros}" footer="#{constantes.cadLivros}" style="margin-bottom:20px">
+                <h:panelGrid id="painelGrid" columns="2" cellpadding="10">
+                    <p:outputLabel id="lblTitulo" for="inTitulo" value="Título: "/>
+                    <p:inputText id="inTitulo" size="50" maxlength="30" placeholder="Título" value="#{cadLiv.livro.nome}" />
+
+                    <p:outputLabel id="lblGenero" for="inGenero" value="Gênero: "/>
+                    <p:inputText id="inGenero" size="50" maxlength="20" placeholder="Gênero" value="#{cadLiv.livro.genero}" />
+
+                    <p:outputLabel id="lblDtPub" for="inDtPub" value="Data de publicação: "/>
+                    <p:calendar id="inDtPub" value="#{cadLiv.livro.dataPublicacao}" pattern="dd/MM/yyyy" mask="true" />
+
+                    <p:outputLabel id="lblResumo" for="inResumo" value="Resumo: "/>
+                    <p:inputTextarea id="inResumo" cols="50" maxlength="500" placeholder="Resumo" value="#{cadLiv.livro.resumo}" />
+
+                    <p:commandButton id="btnClientesCad" value="Salvar" actionListener="#{cadLiv.salvar}" />
                 </h:panelGrid>
             </p:panel>
         </h:panelGrid>

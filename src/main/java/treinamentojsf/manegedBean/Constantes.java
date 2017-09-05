@@ -1,4 +1,4 @@
-package treinamentojsf.manegedBeans;
+package treinamentojsf.manegedBean;
 
 import javax.faces.bean.ManagedBean;
 
