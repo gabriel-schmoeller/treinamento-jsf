@@ -11,7 +11,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
  */
 public class SessionFactoryHolder {
 
-    private static final SessionFactory sessionFactory = criarSessao();
+    private static SessionFactory sessionFactory = null;
 
     private static SessionFactory criarSessao(){
         final StandardServiceRegistry registry;
@@ -28,6 +28,9 @@ public class SessionFactoryHolder {
     }
 
     public static SessionFactory getSessionFactory() {
+        if (sessionFactory == null) {
+            sessionFactory = criarSessao();
+        }
         return sessionFactory;
     }
 

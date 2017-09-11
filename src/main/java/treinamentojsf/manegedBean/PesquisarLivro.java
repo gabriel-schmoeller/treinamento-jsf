@@ -22,8 +22,9 @@ public class PesquisarLivro {
         Session session = SessionFactoryHolder.openSession();
 
         Query<Livro> query = session.createQuery("select l from Livro l", Livro.class);
+        List<Livro> list = query.list();
         session.close();
-        return query.list();
+        return list;
     }
 
     public List<Livro> listarComFiltro(FiltroLivro filtro){

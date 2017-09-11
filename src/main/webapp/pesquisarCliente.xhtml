@@ -13,29 +13,52 @@
     <h1>#{constantes.h1}</h1>
 
     <h:form>
-        <ui:include src="menu.xhtml" />
+        <h:panelGrid columns="2" cellpadding="20">
 
-        <p:panel>
+            <ui:include src="menu.xhtml" />
 
-            <p:dataTable var="cliente" value="#{psqCli.listar()}">
-                <p:column headerText="Id">
-                    <h:outputText value="#{cliente.id}" />
-                </p:column>
+            <p:panel id="basic" header="#{constantes.psqClientes}" footer="#{constantes.psqClientes}" style="margin-bottom:20px">
 
-                <p:column headerText="Nome">
-                    <h:outputText value="#{cliente.nome}" />
-                </p:column>
+                <h:panelGrid id="panelGrid" columns="2" cellpadding="20">
+                    <p:outputLabel id="lblEmprestado" value="Possui Livros: "/>
+                    <p:selectOneRadio id="emprestado">
+                        <f:selectItem itemLabel="Sim" itemValue="Sim" />
+                        <f:selectItem itemLabel="Não" itemValue="Não" />
+                        <f:selectItem itemLabel="Ambos" itemValue="Ambos" />
+                    </p:selectOneRadio>
+                </h:panelGrid>
 
-                <p:column headerText="CPF">
-                    <h:outputText value="#{cliente.cpf}" />
-                </p:column>
+                <h:panelGrid id="painelGrid2" columns="2" cellpadding="10">
+                    <p:outputLabel id="lblNomeEmail" for="inNomeEmail" value="Nome ou Email: "/>
+                    <p:inputText id="inNomeEmail" size="50" placeholder="Nome ou Email" />
+                </h:panelGrid>
 
-                <p:column headerText="E-mail">
-                    <h:outputText value="#{cliente.email}" />
-                </p:column>
+                <h:panelGrid id="painelGrid3" columns="1" cellpadding="20">
+                    <p:dataTable var="cliente" value="#{psqCli.listar()}">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{cliente.id}" />
+                        </p:column>
 
-            </p:dataTable>
-        </p:panel>
+                        <p:column headerText="Nome">
+                            <h:outputText value="#{cliente.nome}" />
+                        </p:column>
+
+                        <p:column headerText="CPF">
+                            <h:outputText value="#{cliente.cpf}" />
+                        </p:column>
+
+                        <p:column headerText="E-mail">
+                            <h:outputText value="#{cliente.email}" />
+                        </p:column>
+
+                        <p:column headerText="Ações">
+                            <h:outputText value="Visualizar"  />
+                        </p:column>
+
+                    </p:dataTable>
+                </h:panelGrid>
+            </p:panel>
+        </h:panelGrid>
     </h:form>
 
 </h:body>

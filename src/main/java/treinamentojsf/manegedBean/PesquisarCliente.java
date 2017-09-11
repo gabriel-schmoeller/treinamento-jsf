@@ -16,12 +16,13 @@ public class PesquisarCliente {
     private FiltroCliente filtro;
 
     public List<Cliente> listar(){
-        SessionFactory sessionFactory = SessionFactoryHolder.getSessionFactory();
-        Session session = sessionFactory.openSession();
+    //SessionFactory sessionFactory = SessionFactoryHolder.getSessionFactory();
+        Session session = SessionFactoryHolder.openSession();
 
         Query<Cliente> query = session.createQuery("select c from Cliente c", Cliente.class);
+        List<Cliente> list = query.list();
         session.close();
-        return query.list();
+        return list;
     }
 
     public List<Cliente> listarComFiltro(FiltroCliente filtro){
