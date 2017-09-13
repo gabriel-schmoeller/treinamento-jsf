@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>#{constantes.titulo}</title>
+</h:head>
+<h:body>
+    <h1>#{constantes.h1}</h1>
+
+    <h:form>
+        <h:panelGrid columns="2" cellpadding="20">
+
+            <ui:include src="menu.xhtml" />
+
+            <p:panel id="basic" header="#{constantes.dtlLivro}" footer="#{constantes.dtlLivro}" 
+            	style="margin-bottom:20px">
+
+                <p:outputLabel id="lblNome" value="Título: "/>
+                <p:outputText id="optNomeValue" value="{}"/>
+                <p:outputLabel id="lblGenero" value="Gênero: "/>
+                <p:outputText id="optGeneroValue" value="{}"/>
+                <p:outputLabel id="lblDtPub" value="Data de Publicação: "/>
+                <p:outputText id="optDtPubValue" value="{}"/>
+                <p:outputLabel id="lblResumo" value="Resumo: "/>
+                <p:outputText id="optResumoValue" value="{}"/>
+                <p:outputLabel id="lblEmprestadoPara" value="Emprestado para: "/>
+                <p:outputText id="optEmprestadoParaValue" value="{}"/>
+                <p:outputLabel id="lblDesde" value="Desde: "/>
+                <p:outputText id="optDesdeValue" value="{}"/>
+                
+                
+                <h:panelGrid id="panelGrid" columns="3">
+                	<p:commandButton id="devolver" value="Devolver" 
+                		actionListener="dtlLivro.devolver({clienteId},{livroId})"/>
+                	<p:commandButton id="emprestar" value="Emprestar"
+                		actionListener="dtlLivro.emprestar({clienteId},{livroId})"/>
+                	<p:commandButton id="editar" value="Editar" actionListener="dtlLivro.editar()"/>
+                </h:panelGrid>
+                
+            </p:panel>
+        </h:panelGrid>
+    </h:form>
+
+</h:body>
+</html>

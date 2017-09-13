@@ -4,7 +4,7 @@ import javax.faces.bean.ManagedBean;
 
 @ManagedBean(name = "constantes")
 public class Constantes {
-    private final String titulo           = "GerBibs";
+    private final String titulo           = "GerenBibs";
     private final String h1               = "Sistema de Gerenciamento de Bibliotecas - GerenBibs";
     private final String cadastrar        = "Cadastrar";
     private final String pesquisar        = "Pesquisar";
@@ -18,33 +18,35 @@ public class Constantes {
     private final String delLivros        = "Apagar Livros";
     private final String ediLivros        = "Editar Livros";
     private final String psqLivros        = "Pesquisar Livros";
-    private final String cadEmprest       = "Cadastrar Empréstimos";
-    private final String delEmprest       = "Apagar Empréstimos";
-    private final String ediEmprest       = "Editar Empréstimos";
-    private final String psqEmprest       = "Pesquisar Empréstimos";
-    private final String devolucao        = "Devolução de Livro";
+    private final String cadEmprest       = "Cadastrar Empr&eacute;stimos";
+    private final String delEmprest       = "Apagar Empr&eacute;stimos";
+    private final String ediEmprest       = "Editar Empr&eacute;stimos";
+    private final String psqEmprest       = "Pesquisar Empr&eacute;stimos";
+    private final String devolucao        = "Devolu&ccedil;&atilde;o de Livro";
     private final String msgBoasVindas    = "Bem-vindos ao GerBibs - Sistema de Gerenciamento de Biblioteca!";
-    private final String historia         = "Histórico do sistema";
-    private final String lblLivroTitulo   = "Título: ";
-    private final String lblLivroGenero   = "Gênero: ";
-    private final String lblLivroDtPub    = "Data de Publicação: ";
+    private final String historia         = "Hist&oacute;rico do sistema";
+    private final String lblLivroTitulo   = "T&iacute;tulo: ";
+    private final String lblLivroGenero   = "G&ecirc;nero: ";
+    private final String lblLivroDtPub    = "Data de Publica&ccedil;&atilde;o: ";
     private final String lblLivroResumo   = "Resumo: ";
     private final String lblClienteNome   = "Nome: ";
     private final String lblClienteCpf    = "CPF: ";
     private final String lblClienteEmail  = "E-mail: ";
-    private final String txtLivroTitulo   = "Título do Livro";
-    private final String txtLivroGenero   = "Gênero do Livro";
+    private final String txtLivroTitulo   = "T&iacute;tulo do Livro";
+    private final String txtLivroGenero   = "GG&ecirc;nero do Livro";
     private final String txtLivroResumo   = "Resumo do Livro";
-    private final String txtLivroDtPub    = "Data de Publicação do Livro";
+    private final String txtLivroDtPub    = "Data de Publica&ccedil;&atilde;o do Livro";
     private final String txtClienteNome   = "Nome do Cliente";
     private final String txtClienteCpf    = "CPF do Cliente";
     private final String txtClienteEmail  = "E-mail do Cliente";
     private final String lblEmprestado    = "Emprestado: ";
     private final String lblSim           = "Sim";
-    private final String lblNao           = "Não";
+    private final String lblNao           = "N&atilde;o";
     private final String lblAmbos         = "Ambos";
     private final String lblDtPubDepois   = "Emprestado depois de: ";
     private final String lblDtPubAntes    = "Antes de: ";
+    private final String dtlLivro         = "Detalhe do Livro";
+    private final String livrosCliente    = "Livros em Empr&eacute;stimo"; 
 
     public String getTitulo() {
         return titulo;
@@ -168,5 +170,8 @@ public class Constantes {
     }
     public String getLblDtPubAntes(){
         return lblDtPubAntes;
+    }
+    public String getDtlLivro(){
+        return dtlLivro;
     }
 }

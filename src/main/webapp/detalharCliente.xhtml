@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>#{constantes.titulo}</title>
+</h:head>
+<h:body>
+    <h1>#{constantes.h1}</h1>
+
+    <h:form>
+        <h:panelGrid columns="2" cellpadding="20">
+
+            <ui:include src="menu.xhtml" />
+
+            <p:panel id="basic" header="#{constantes.dtlCliente}" footer="#{constantes.dtlCliente}" 
+            	style="margin-bottom:20px">
+
+                <p:outputLabel id="lblNome" value="Nome: "/>
+                <p:outputText id="optNomeValue" value="{}"/>
+                <p:outputLabel id="lblCpf" value="CPF: "/>
+                <p:outputText id="optCpfValue" value="{}"/>
+                <p:outputLabel id="lblEmail" value="E-mail: "/>
+                <p:outputText id="optEmailValue" value="{}"/>
+                <p:outputLabel id="lblTelefone" value="Telefone: "/>
+                <p:outputText id="optTelefoneValue" value="{}" />
+                <p:outputLabel id="lblEmprestadoPara" value="Emprestado para: " />
+                <p:outputText id="optEmprestadoParaValue" value="{}" />
+                <p:outputLabel id="lblDesde" value="Desde: " />
+                <p:outputText id="optDesdeValue" value="{}" />
+                
+                <p:commandButton id="editar" value="Editar" actionListener="dtlCliente.editar()" />
+                
+            </p:panel>
+            
+            <p:panel id="basic" header="#{constantes.livrosCliente}" footer="#{constantes.livrosCliente}" 
+            	style="margin-bottom:20px">
+
+                <p:dataTable var="emprestimo" value="#{dtlCliente.listarEmprestimos({clienteId})}" >
+                	<p:column headerText="Id">
+                            <h:outputText value="#{emprestimo.id}" />
+                        </p:column>
+
+                        <p:column headerText="LivroId">
+                            <h:outputText value="#{emprestimo.livrosId}" />
+                        </p:column>
+
+                        <p:column headerText="ClienteId">
+                            <h:outputText value="#{emprestimo.clientesId}" />
+                        </p:column>
+
+                        <p:column headerText="DataEmprestimo">
+                            <h:outputText value="#{emprestimo.dataEmprestimo}" />
+                        </p:column>
+
+                        <p:column headerText="Ações">
+                            <p:link outcome="detalharEmprestimo" value="Visualizar"/>
+                        </p:column>
+                </p:dataTable>
+                
+                <p:commandButton id="editar" value="Editar" actionListener="dtlCliente.editar()"/>
+                
+            </p:panel>
+            
+        </h:panelGrid>
+    </h:form>
+
+</h:body>
+</html>

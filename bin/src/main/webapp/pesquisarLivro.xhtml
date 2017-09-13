@@ -49,12 +49,11 @@
                     <p:outputLabel id="lblDtPubAntes" for="inDtPubAntes" value="Antes de: "/>
                     <p:calendar id="inDtPubAntes" pattern="dd/MM/yyyy" mask="true"/>
 
-                    <p:commandButton id="btnLivroPsq" value="Pesquisar" 
-                    	actionListener="pqsLiv.preencherTabela({_informações_do_filtro})"/>
+                    <p:commandButton id="btnLivroPsq" value="Pesquisar"/>
                 </h:panelGrid>
 
                 <h:panelGrid id="painel5" columns="1" cellpadding="10">
-                    <p:dataTable var="livro" value="#{psqLiv.listar()}">
+                    <p:dataTable>
                         <p:column headerText="Título">
                             <h:outputText value="Título" />
                         </p:column>
@@ -68,7 +67,9 @@
                             <h:outputText value="Data de Empréstimo" />
                         </p:column>
                         <p:column headerText="Ações">
-                            <p:link outcome="detalharLivro" value="Detalhar"/>
+                            <h:commandLink actionListener="">
+                                <h:outputText value="Visualizar" />
+                            </h:commandLink>
                         </p:column>
                     </p:dataTable>
                 </h:panelGrid>

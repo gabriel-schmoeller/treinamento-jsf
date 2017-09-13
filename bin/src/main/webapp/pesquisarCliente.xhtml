@@ -32,10 +32,7 @@
                     <p:outputLabel id="lblNomeEmail" for="inNomeEmail" value="Nome ou Email: "/>
                     <p:inputText id="inNomeEmail" size="50" placeholder="Nome ou Email" />
                 </h:panelGrid>
-                
-                <p:commandButton id="btnClientePsq" value="Pesquisar" 
-                    	actionListener="psqCLi.preencherTabela({_informações_do_filtro})"/>
-                    	
+
                 <h:panelGrid id="painelGrid3" columns="1" cellpadding="20">
                     <p:dataTable var="cliente" value="#{psqCli.listar()}">
                         <p:column headerText="Id">
@@ -55,7 +52,7 @@
                         </p:column>
 
                         <p:column headerText="Ações">
-                            <p:link outcome="detalharCliente" value="Detalhar"/>
+                            <h:outputText value="Visualizar"  />
                         </p:column>
 
                     </p:dataTable>
