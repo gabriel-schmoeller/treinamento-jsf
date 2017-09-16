@@ -3,6 +3,7 @@ package treinamentojsf.manegedBean;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.primefaces.context.RequestContext;
 import treinamentojsf.persistence.SessionFactoryHolder;
 import treinamentojsf.persistence.entity.Livro;
 
@@ -30,6 +31,8 @@ public class CadastrarLivro {
         session.persist(livro);
         transaction.commit();
         session.close();
+
+        RequestContext.getCurrentInstance().reset("form:panel");
 
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Informação armazenada com Sucesso!"));
     }

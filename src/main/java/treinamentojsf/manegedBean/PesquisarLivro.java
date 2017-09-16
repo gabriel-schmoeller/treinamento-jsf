@@ -18,6 +18,10 @@ public class PesquisarLivro {
 
     private FiltroLivro filtro;
 
+    public FiltroLivro getFiltro() {
+        return filtro;
+    }
+
     public List<Livro> listar(){
         Session session = SessionFactoryHolder.openSession();
 
@@ -27,9 +31,19 @@ public class PesquisarLivro {
         return list;
     }
 
-    public List<Livro> listarComFiltro(FiltroLivro filtro){
+    public List<Livro> listarComFiltro(){
         Session session = SessionFactoryHolder.openSession();
         String where = "";
+        String emprestado = filtro.getEmprestado();
+
+        /*
+        if (emprestado != null){
+            switch (emprestado){
+                case "Sim":
+                    where += ;
+            }
+        }
+
 
         if (filtro != null) {
             where = " (nome like %" + filtro.getGenNomRes() + "% or " +
@@ -37,9 +51,22 @@ public class PesquisarLivro {
                     " resumo like %" + filtro.getGenNomRes() + "%) and (" +
                     " dataPublicacao < " + filtro.getPublicadoAntesDe() + " and " +
                     " dataPublicacao > " + filtro.getPublicadoDepoisDe() + ")";
-
-        }
-        Query<Livro> query = session.createQuery("select l from Livro " + where, Livro.class);
+        }*/
+        Query<Livro> query = session.createQuery("select l from Livro " + " where genero = 'Romance'", Livro.class);
         return query.list();
     }
+
+    public boolean estaEmprestado(){
+        Session session = SessionFactoryHolder.openSession();
+        Query<Long> query= session.createQuery("SELECT count(l.id) \n" +
+                "FROM verEmprestimos e inner join Livros l \n" +
+                "on l.NOME = e.NOME_LIVRO;", Long.class);
+        Long count = query.getSingleResult();
+        if (count == 0){
+            return false;
+        }
+        return true;
+    }
+
+
 }

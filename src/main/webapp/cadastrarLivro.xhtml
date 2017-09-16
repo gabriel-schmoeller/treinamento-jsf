@@ -30,7 +30,10 @@
                     <p:outputLabel id="lblResumo" for="inResumo" value="Resumo: "/>
                     <p:inputTextarea id="inResumo" cols="50" maxlength="500" placeholder="Resumo" value="#{cadLiv.livro.resumo}" />
 
-                    <p:commandButton id="btnClientesCad" value="Salvar" actionListener="#{cadLiv.salvar}" />
+                    <p:commandButton id="btnClientesCad" value="Salvar" actionListener="#{cadLiv.salvar}" >
+                        <p:resetInput target="basic" />
+                    </p:commandButton>
+
                 </h:panelGrid>
             </p:panel>
         </h:panelGrid>

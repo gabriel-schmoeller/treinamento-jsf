@@ -34,7 +34,7 @@
                 </h:panelGrid>
                 
                 <p:commandButton id="btnClientePsq" value="Pesquisar" 
-                    	actionListener="psqCLi.preencherTabela({_informações_do_filtro})"/>
+                    	actionListener="psqCLi.listarComFiltro()"/>
                     	
                 <h:panelGrid id="painelGrid3" columns="1" cellpadding="20">
                     <p:dataTable var="cliente" value="#{psqCli.listar()}">

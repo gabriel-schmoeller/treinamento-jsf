@@ -15,6 +15,10 @@ public class PesquisarCliente {
 
     private FiltroCliente filtro;
 
+    public FiltroCliente getFiltro() {
+        return filtro;
+    }
+
     public List<Cliente> listar(){
     //SessionFactory sessionFactory = SessionFactoryHolder.getSessionFactory();
         Session session = SessionFactoryHolder.openSession();

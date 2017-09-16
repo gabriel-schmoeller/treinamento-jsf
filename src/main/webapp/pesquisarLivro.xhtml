@@ -23,53 +23,71 @@
                 <h:panelGrid id="painelGrid" columns="2" cellpadding="10">
                     <p:outputLabel id="lblEmprestado" value="Emprestado: "/>
                     <p:selectOneRadio id="emprestado">
-                        <f:selectItem itemLabel="Sim" itemValue="Sim" />
-                        <f:selectItem itemLabel="Não" itemValue="Não" />
-                        <f:selectItem itemLabel="Ambos" itemValue="Ambos" />
+                        <f:selectItem itemLabel="Sim" itemValue="Sim" value="#{psqLiv.filtro.emprestado}" />
+                        <f:selectItem itemLabel="Não" itemValue="Não" value="#{psqLiv.filtro.emprestado}" />
+                        <f:selectItem itemLabel="Ambos" itemValue="Ambos" value="#{psqLiv.filtro.emprestado}" />
                     </p:selectOneRadio>
                 </h:panelGrid>
 
                 <h:panelGrid id="painelGrid2" columns="4" cellpadding="10">
                     <p:outputLabel id="lblDtEmpDepois" for="inDtEmpDepois" value="Emprestado depois de: "/>
-                    <p:calendar id="inDtEmpDepois" pattern="dd/MM/yyyy" mask="true" />
+                    <p:calendar id="inDtEmpDepois" pattern="dd/MM/yyyy" mask="true"
+                                value="#{psqLiv.filtro.emprestadoDepoisDe}" />
 
                     <p:outputLabel id="lblDtEmpAntes" for="inDtEmpAntes" value="Antes de: "/>
-                    <p:calendar id="inDtEmpAntes" pattern="dd/MM/yyyy" mask="true" />
+                    <p:calendar id="inDtEmpAntes" pattern="dd/MM/yyyy" mask="true"
+                                value="#{psqLiv.filtro.emprestadoAntesDe}" />
                 </h:panelGrid>
 
                 <h:panelGrid id="painelGrid3" columns="2" cellpadding="10">
                     <p:outputLabel id="lblGenNomRes" for="inGenNomRes" value="Gênero, nome ou resumo: "/>
-                    <p:inputText id="inGenNomRes" size="50" placeholder="Gênero, nome ou resumo" />
+                    <p:inputText id="inGenNomRes" size="50" placeholder="Gênero, nome ou resumo"
+                                 value="#{psqLiv.filtro.genNomRes}" />
                 </h:panelGrid>
 
                 <h:panelGrid id="painelGrid4" columns="5" cellpadding="10">
                     <p:outputLabel id="lblDtPubDepois" for="inDtPubDepois" value="Publicado depois de: "/>
-                    <p:calendar id="inDtPubDepois" pattern="dd/MM/yyyy" mask="true" />
+                    <p:calendar id="inDtPubDepois" pattern="dd/MM/yyyy" mask="true"
+                                value="#{psqLiv.filtro.publicadoDepoisDe}" />
 
                     <p:outputLabel id="lblDtPubAntes" for="inDtPubAntes" value="Antes de: "/>
-                    <p:calendar id="inDtPubAntes" pattern="dd/MM/yyyy" mask="true"/>
+                    <p:calendar id="inDtPubAntes" pattern="dd/MM/yyyy" mask="true"
+                                value="#{psqLiv.filtro.publicadoAntesDe}" />
 
                     <p:commandButton id="btnLivroPsq" value="Pesquisar" 
-                    	actionListener="pqsLiv.preencherTabela({_informações_do_filtro})"/>
+                    	actionListener="pqsLiv.listar()"/>
                 </h:panelGrid>
 
-                <h:panelGrid id="painel5" columns="1" cellpadding="10">
+                <h:panelGrid id="painel5" columns="1" cellpadding="10" >
                     <p:dataTable var="livro" value="#{psqLiv.listar()}">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{livro.id}" />
+                        </p:column>
+
                         <p:column headerText="Título">
-                            <h:outputText value="Título" />
+                            <h:outputText value="#{livro.nome}" />
                         </p:column>
+
                         <p:column headerText="Gênero">
-                            <h:outputText value="Gênero" />
+                            <h:outputText value="#{livro.genero}" />
                         </p:column>
+
+                        <p:column headerText="DataPub">
+                            <h:outputText value="#{livro.dataPublicacao}" />
+                        </p:column>
+
                         <p:column headerText="Emprestado">
-                            <h:outputText value="Emprestado" />
+                            <h:outputText value="#{psqLiv.estaEmprestado()}" />
                         </p:column>
+
                         <p:column headerText="Data de Empréstimo">
                             <h:outputText value="Data de Empréstimo" />
                         </p:column>
+
                         <p:column headerText="Ações">
                             <p:link outcome="detalharLivro" value="Detalhar"/>
                         </p:column>
+
                     </p:dataTable>
                 </h:panelGrid>
 

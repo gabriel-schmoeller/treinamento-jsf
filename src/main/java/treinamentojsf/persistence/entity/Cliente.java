@@ -19,13 +19,13 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="seq_clientes")
     @Column(name = "ID", unique = true, nullable = false)
     private Integer id;
-    @Column(name = "NAME", nullable = false)
+    @Column(name = "NOME", nullable = false)
     private String nome;
     @Column(name = "CPF", nullable = false)
     private String cpf;
     @Column(name = "EMAIL")
     private String email;
-    @Column(name = "Telefone", nullable = false)
+    @Column(name = "TELEFONE", nullable = false)
     private String telefone;
 
     public Cliente(){}
