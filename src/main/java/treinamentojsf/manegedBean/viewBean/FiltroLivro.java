@@ -1,22 +1,20 @@
 package treinamentojsf.manegedBean.viewBean;
 
-import javax.faces.bean.ManagedBean;
 import java.util.Date;
 
-@ManagedBean(name = "filtroLivro")
 public class FiltroLivro {
-    private String genNomRes;
+    private String nomGenRes;
     private Date publicadoAntesDe;
     private Date publicadoDepoisDe;
-    private String emprestado; // "Sim", "Não", "Ambos"
+    private Boolean emprestado; // "Sim", "Não", "Ambos"
     private Date emprestadoAntesDe;
     private Date emprestadoDepoisDe;
 
     public FiltroLivro() {
     }
 
-    public FiltroLivro(String genNomRes, Date publicadoAntesDe, Date publicadoDepoisDe, String emprestado, Date emprestadoAntesDe, Date emprestadoDepoisDe) {
-        this.genNomRes = genNomRes;
+    public FiltroLivro(String nomGenRes, Date publicadoAntesDe, Date publicadoDepoisDe, Boolean emprestado, Date emprestadoAntesDe, Date emprestadoDepoisDe) {
+        this.nomGenRes = nomGenRes;
         this.publicadoAntesDe = publicadoAntesDe;
         this.publicadoDepoisDe = publicadoDepoisDe;
         this.emprestado = emprestado;
@@ -24,27 +22,51 @@ public class FiltroLivro {
         this.emprestadoDepoisDe = emprestadoDepoisDe;
     }
 
-    public String getGenNomRes() {
-        return genNomRes;
+    public String getNomGenRes() {
+        return nomGenRes;
+    }
+
+    public void setNomGenRes(String nomGenRes) {
+        this.nomGenRes = nomGenRes;
     }
 
     public Date getPublicadoAntesDe() {
         return publicadoAntesDe;
     }
 
+    public void setPublicadoAntesDe(Date publicadoAntesDe) {
+        this.publicadoAntesDe = publicadoAntesDe;
+    }
+
     public Date getPublicadoDepoisDe() {
         return publicadoDepoisDe;
     }
 
-    public String getEmprestado() {
+    public void setPublicadoDepoisDe(Date publicadoDepoisDe) {
+        this.publicadoDepoisDe = publicadoDepoisDe;
+    }
+
+    public Boolean getEmprestado() {
         return emprestado;
+    }
+
+    public void setEmprestado(Boolean emprestado) {
+        this.emprestado = emprestado;
     }
 
     public Date getEmprestadoAntesDe() {
         return emprestadoAntesDe;
     }
 
+    public void setEmprestadoAntesDe(Date emprestadoAntesDe) {
+        this.emprestadoAntesDe = emprestadoAntesDe;
+    }
+
     public Date getEmprestadoDepoisDe() {
         return emprestadoDepoisDe;
+    }
+
+    public void setEmprestadoDepoisDe(Date emprestadoDepoisDe) {
+        this.emprestadoDepoisDe = emprestadoDepoisDe;
     }
 }

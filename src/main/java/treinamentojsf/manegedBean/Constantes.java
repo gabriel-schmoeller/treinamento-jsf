@@ -24,7 +24,7 @@ public class Constantes {
     private final String psqEmprest       = "Pesquisar Empréstimos";
     private final String devolucao        = "Devolução de Livro";
     private final String msgBoasVindas    = "Bem-vindos ao GerBibs - Sistema de Gerenciamento de Biblioteca!";
-    private final String historia         = "Hist&oacute;rico do sistema";
+    private final String historia         = "Histórico do sistema";
     private final String lblLivroTitulo   = "Título: ";
     private final String lblLivroGenero   = "Gênero: ";
     private final String lblLivroDtPub    = "Data de Publicação: ";

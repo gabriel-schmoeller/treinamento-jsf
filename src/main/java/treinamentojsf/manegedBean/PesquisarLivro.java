@@ -16,7 +16,7 @@ import javax.faces.bean.ManagedBean;
 @ManagedBean(name = "psqLiv")
 public class PesquisarLivro {
 
-    private FiltroLivro filtro;
+    private FiltroLivro filtro = new FiltroLivro();
 
     public FiltroLivro getFiltro() {
         return filtro;
@@ -33,40 +33,32 @@ public class PesquisarLivro {
 
     public List<Livro> listarComFiltro(){
         Session session = SessionFactoryHolder.openSession();
-        String where = "";
-        String emprestado = filtro.getEmprestado();
+        String where = " where 1 = 1 ";
 
-        /*
-        if (emprestado != null){
-            switch (emprestado){
-                case "Sim":
-                    where += ;
+
+        if (!filtro.getNomGenRes().equals("")){
+            where += " (and nome like %" + filtro.getNomGenRes() + "% or " +
+                    " genero like %" + filtro.getNomGenRes() + "% or " +
+                    " resumo like %" + filtro.getNomGenRes() + "%) ";
+        }
+
+        if (filtro.getEmprestadoAntesDe() != null){
+            where += " and dataPublicacao < " + filtro.getPublicadoAntesDe();
+        }
+
+        if (filtro.getEmprestadoDepoisDe() != null){
+            where += " and dataPublicacao < " + filtro.getPublicadoDepoisDe();
+        }
+
+        if (filtro.getEmprestado() != null){
+            if(filtro.getEmprestado()){
+                where += " and  EMPRESTIMOS.ID IS NULL ";
+            }else{
+                where += " and  EMPRESTIMOS.ID IS NOT NULL ";
             }
         }
 
-
-        if (filtro != null) {
-            where = " (nome like %" + filtro.getGenNomRes() + "% or " +
-                    " genero like %" + filtro.getGenNomRes() + "% or " +
-                    " resumo like %" + filtro.getGenNomRes() + "%) and (" +
-                    " dataPublicacao < " + filtro.getPublicadoAntesDe() + " and " +
-                    " dataPublicacao > " + filtro.getPublicadoDepoisDe() + ")";
-        }*/
-        Query<Livro> query = session.createQuery("select l from Livro " + " where genero = 'Romance'", Livro.class);
+        Query<Livro> query = session.createQuery("select l from Livro l left join l.emprestimo e " + where, Livro.class);
         return query.list();
     }
-
-    public boolean estaEmprestado(){
-        Session session = SessionFactoryHolder.openSession();
-        Query<Long> query= session.createQuery("SELECT count(l.id) \n" +
-                "FROM verEmprestimos e inner join Livros l \n" +
-                "on l.NOME = e.NOME_LIVRO;", Long.class);
-        Long count = query.getSingleResult();
-        if (count == 0){
-            return false;
-        }
-        return true;
-    }
-
-
 }

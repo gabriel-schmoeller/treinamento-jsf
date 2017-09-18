@@ -1,8 +1,5 @@
 package treinamentojsf.manegedBean.viewBean;
 
-import javax.faces.bean.ManagedBean;
-
-@ManagedBean
 public class FiltroCliente {
     private String nome;
     private String cpf;

@@ -22,10 +22,10 @@
             <p:panel id="basic" header="#{constantes.psqLivros}" footer="#{constantes.psqLivros}" style="margin-bottom:20px">
                 <h:panelGrid id="painelGrid" columns="2" cellpadding="10">
                     <p:outputLabel id="lblEmprestado" value="Emprestado: "/>
-                    <p:selectOneRadio id="emprestado">
-                        <f:selectItem itemLabel="Sim" itemValue="Sim" value="#{psqLiv.filtro.emprestado}" />
-                        <f:selectItem itemLabel="Não" itemValue="Não" value="#{psqLiv.filtro.emprestado}" />
-                        <f:selectItem itemLabel="Ambos" itemValue="Ambos" value="#{psqLiv.filtro.emprestado}" />
+                    <p:selectOneRadio id="emprestado" value="#{psqLiv.filtro.emprestado}">
+                        <f:selectItem itemLabel="Sim" itemValue="#{true}" />
+                        <f:selectItem itemLabel="Não" itemValue="#{false}" />
+                        <f:selectItem itemLabel="Ambos" itemValue="#{null}" />
                     </p:selectOneRadio>
                 </h:panelGrid>
 
@@ -40,9 +40,9 @@
                 </h:panelGrid>
 
                 <h:panelGrid id="painelGrid3" columns="2" cellpadding="10">
-                    <p:outputLabel id="lblGenNomRes" for="inGenNomRes" value="Gênero, nome ou resumo: "/>
-                    <p:inputText id="inGenNomRes" size="50" placeholder="Gênero, nome ou resumo"
-                                 value="#{psqLiv.filtro.genNomRes}" />
+                    <p:outputLabel id="lblNomGenRes" for="inNomGenRes" value="Nome, gênero ou resumo: "/>
+                    <p:inputText id="inNomGenRes" size="50" placeholder="Nome, gênero ou resumo"
+                                 value="#{psqLiv.filtro.nomGenRes}" />
                 </h:panelGrid>
 
                 <h:panelGrid id="painelGrid4" columns="5" cellpadding="10">
@@ -54,15 +54,12 @@
                     <p:calendar id="inDtPubAntes" pattern="dd/MM/yyyy" mask="true"
                                 value="#{psqLiv.filtro.publicadoAntesDe}" />
 
-                    <p:commandButton id="btnLivroPsq" value="Pesquisar" 
-                    	actionListener="pqsLiv.listar()"/>
+                    <p:commandButton id="btnLivroPsq" value="Pesquisar"
+                    	actionListener="#{psqLiv.listarComFiltro()}"/>
                 </h:panelGrid>
 
                 <h:panelGrid id="painel5" columns="1" cellpadding="10" >
                     <p:dataTable var="livro" value="#{psqLiv.listar()}">
-                        <p:column headerText="Id">
-                            <h:outputText value="#{livro.id}" />
-                        </p:column>
 
                         <p:column headerText="Título">
                             <h:outputText value="#{livro.nome}" />
@@ -72,16 +69,16 @@
                             <h:outputText value="#{livro.genero}" />
                         </p:column>
 
-                        <p:column headerText="DataPub">
+                        <p:column headerText="Data de Publicação">
                             <h:outputText value="#{livro.dataPublicacao}" />
                         </p:column>
 
                         <p:column headerText="Emprestado">
-                            <h:outputText value="#{psqLiv.estaEmprestado()}" />
+                            <h:outputText value="#{livro.estaEmprestado() ? 'Sim' : 'Não'}" />
                         </p:column>
 
                         <p:column headerText="Data de Empréstimo">
-                            <h:outputText value="Data de Empréstimo" />
+                            <h:outputText value="#{livro.emprestimo.dataEmprestimo}" />
                         </p:column>
 
                         <p:column headerText="Ações">

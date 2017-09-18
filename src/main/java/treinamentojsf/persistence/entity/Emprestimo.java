@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -26,18 +28,14 @@ public class Emprestimo {
     private Integer clientesId;
     @Column(name = "DATA_EMPRESTIMO", nullable = false)
     private Date dataEmprestimo;
+    @OneToOne
+    @JoinColumn(name = "LIVROS_ID", updatable = false, insertable = false)
+    private Livro livro;
 
     public Emprestimo(){}
 
-    public Emprestimo(Integer id, Integer livrosId, Integer clientesId, Date dataEmprestimo) {
-        this.id = id;
-        this.livrosId = livrosId;
-        this.clientesId = clientesId;
-        this.dataEmprestimo = dataEmprestimo;
-    }
-
     public Integer getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(Integer id) {
@@ -56,7 +54,7 @@ public class Emprestimo {
         return clientesId;
     }
 
-    public void setClientesId(int clientesId) {
+    public void setClientesId(Integer clientesId) {
         this.clientesId = clientesId;
     }
 
@@ -68,6 +66,11 @@ public class Emprestimo {
         this.dataEmprestimo = dataEmprestimo;
     }
 
+    public Livro getLivro() {
+        return livro;
+    }
 
-
+    public void setLivro(Livro livro) {
+        this.livro = livro;
+    }
 }

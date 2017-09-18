@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -29,18 +30,11 @@ public class Livro {
     private String resumo;
     @Column(name = "DATA_PUBLICACAO", nullable = false)
     private Date dataPublicacao;
+    @OneToOne(mappedBy = "livro")
+    private Emprestimo emprestimo;
 
     public Livro() {
     }
-
-    public Livro(Integer id, String nome, String genero, String resumo, Date dataPublicacao) {
-        this.id = id;
-        this.nome = nome;
-        this.genero = genero;
-        this.resumo = resumo;
-        this.dataPublicacao = dataPublicacao;
-    }
-
 
     public Integer getId(){
         return id;
@@ -80,6 +74,18 @@ public class Livro {
 
     public void setDataPublicacao(Date dataPublicacao) {
         this.dataPublicacao = dataPublicacao;
+    }
+
+    public Emprestimo getEmprestimo() {
+        return emprestimo;
+    }
+
+    public void setEmprestimo(Emprestimo emprestimo) {
+        this.emprestimo = emprestimo;
+    }
+
+    public boolean estaEmprestado(){
+        return emprestimo != null;
     }
 
     @Override
