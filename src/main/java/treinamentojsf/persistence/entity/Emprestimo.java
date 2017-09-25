@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * Created by Lais Lodi on 28/08/2017.
@@ -26,6 +28,7 @@ public class Emprestimo {
     private Integer livrosId;
     @Column(name = "CLIENTES_ID", nullable = false)
     private Integer clientesId;
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "DATA_EMPRESTIMO", nullable = false)
     private Date dataEmprestimo;
     @OneToOne

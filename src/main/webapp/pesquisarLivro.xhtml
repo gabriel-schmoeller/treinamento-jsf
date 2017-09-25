@@ -54,12 +54,11 @@
                     <p:calendar id="inDtPubAntes" pattern="dd/MM/yyyy" mask="true"
                                 value="#{psqLiv.filtro.publicadoAntesDe}" />
 
-                    <p:commandButton id="btnLivroPsq" value="Pesquisar"
-                    	actionListener="#{psqLiv.listarComFiltro()}"/>
+                    <p:commandButton id="btnLivroPsq" value="Pesquisar" ajax="false"/>
                 </h:panelGrid>
 
                 <h:panelGrid id="painel5" columns="1" cellpadding="10" >
-                    <p:dataTable var="livro" value="#{psqLiv.listar()}">
+                    <p:dataTable var="livro" value="#{psqLiv.listarComFiltro()}">
 
                         <p:column headerText="Título">
                             <h:outputText value="#{livro.nome}" />

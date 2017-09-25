@@ -7,7 +7,9 @@ import treinamentojsf.manegedBean.viewBean.FiltroCliente;
 import treinamentojsf.persistence.SessionFactoryHolder;
 import treinamentojsf.persistence.entity.Cliente;
 
+import java.io.UncheckedIOException;
 import java.util.List;
+import java.util.function.Consumer;
 import javax.faces.bean.ManagedBean;
 
 @ManagedBean(name = "psqCli")
@@ -29,15 +31,15 @@ public class PesquisarCliente {
         return list;
     }
 
-    public List<Cliente> listarComFiltro(FiltroCliente filtro){
+    public List<Cliente> listarComFiltro(){
         Session session = SessionFactoryHolder.openSession();
         String where = "";
 
         if (filtro != null) {
-            where = " nome like %" + filtro.getNome() + "% and " +
-                    " cpf like %" + filtro.getCpf() + "% and " +
-                    " email like %" + filtro.getEmail() + "% and " +
-                    " telefone like %" + filtro.getTelefone() + "%";
+            where = " nome like '%" + filtro.getNome() + "%' and " +
+                    " cpf like '%" + filtro.getCpf() + "%' and " +
+                    " email like '%" + filtro.getEmail() + "%' and " +
+                    " telefone like '%" + filtro.getTelefone() + "%'";
 
         }
         Query<Cliente> query = session.createQuery("select c from Cliente c " + where, Cliente.class);

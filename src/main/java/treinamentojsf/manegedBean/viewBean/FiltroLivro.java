@@ -11,6 +11,7 @@ public class FiltroLivro {
     private Date emprestadoDepoisDe;
 
     public FiltroLivro() {
+        this.nomGenRes = "";
     }
 
     public FiltroLivro(String nomGenRes, Date publicadoAntesDe, Date publicadoDepoisDe, Boolean emprestado, Date emprestadoAntesDe, Date emprestadoDepoisDe) {

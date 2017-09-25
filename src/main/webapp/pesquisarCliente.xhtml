@@ -32,12 +32,12 @@
                     <p:outputLabel id="lblNomeEmail" for="inNomeEmail" value="Nome ou Email: "/>
                     <p:inputText id="inNomeEmail" size="50" placeholder="Nome ou Email" />
                 </h:panelGrid>
-                
-                <p:commandButton id="btnClientePsq" value="Pesquisar" 
+
+                <p:commandButton id="btnClientePsq" value="Pesquisar"
                     	actionListener="psqCLi.listarComFiltro()"/>
-                    	
+
                 <h:panelGrid id="painelGrid3" columns="1" cellpadding="20">
-                    <p:dataTable var="cliente" value="#{psqCli.listar()}">
+                    <p:dataTable var="cliente" value="#{psqCli.listarComFiltro()}">
                         <p:column headerText="Id">
                             <h:outputText value="#{cliente.id}" />
                         </p:column>

@@ -11,6 +11,7 @@
         <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
         <property name="hibernate.default_schema">laislodi</property>
         <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
 
         <mapping class="treinamentojsf.persistence.entity.Cliente"></mapping>
         <mapping class="treinamentojsf.persistence.entity.Emprestimo"></mapping>
