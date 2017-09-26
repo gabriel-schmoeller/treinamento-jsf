@@ -11,6 +11,7 @@ public class FiltroLivro {
     private Date emprestadoDepoisDe;
 
     public FiltroLivro() {
+        nomGenRes = "";
     }
 
     public FiltroLivro(String nomGenRes, Date publicadoAntesDe, Date publicadoDepoisDe, Boolean emprestado, Date emprestadoAntesDe, Date emprestadoDepoisDe) {
@@ -69,4 +70,6 @@ public class FiltroLivro {
     public void setEmprestadoDepoisDe(Date emprestadoDepoisDe) {
         this.emprestadoDepoisDe = emprestadoDepoisDe;
     }
+
+
 }

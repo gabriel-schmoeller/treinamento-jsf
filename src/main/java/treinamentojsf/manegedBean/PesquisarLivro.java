@@ -1,14 +1,15 @@
 package treinamentojsf.manegedBean;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import treinamentojsf.manegedBean.viewBean.FiltroLivro;
 import treinamentojsf.persistence.SessionFactoryHolder;
+import treinamentojsf.persistence.entity.Cliente;
 import treinamentojsf.persistence.entity.Livro;
 
-import java.util.List;
 import javax.faces.bean.ManagedBean;
+import java.util.List;
+
 
 /**
  * @author Gabriel.Schmoeller
@@ -22,43 +23,62 @@ public class PesquisarLivro {
         return filtro;
     }
 
-    public List<Livro> listar(){
-        Session session = SessionFactoryHolder.openSession();
-
-        Query<Livro> query = session.createQuery("select l from Livro l", Livro.class);
-        List<Livro> list = query.list();
-        session.close();
-        return list;
-    }
-
     public List<Livro> listarComFiltro(){
         Session session = SessionFactoryHolder.openSession();
         String where = " where 1 = 1 ";
+        List<Livro> list;
 
-
-        if (!filtro.getNomGenRes().equals("")){
-            where += " (and nome like %" + filtro.getNomGenRes() + "% or " +
-                    " genero like %" + filtro.getNomGenRes() + "% or " +
-                    " resumo like %" + filtro.getNomGenRes() + "%) ";
+       if (!filtro.getNomGenRes().equals("")){
+            where += " and (l.nome like :nomGenRes or " +
+                    " l.genero like :nomGenRes or " +
+                    " l.resumo like :nomGenRes) ";
         }
 
         if (filtro.getEmprestadoAntesDe() != null){
-            where += " and dataPublicacao < " + filtro.getPublicadoAntesDe();
+            where += " and e.dataEmprestimo < :emprestadoAntesDe";
         }
 
         if (filtro.getEmprestadoDepoisDe() != null){
-            where += " and dataPublicacao < " + filtro.getPublicadoDepoisDe();
+            where += " and e.dataEmprestimo > :emprestadoDepoisDe ";
+        }
+
+        if (filtro.getPublicadoDepoisDe() != null){
+            where += " and l.dataPublicacao > :publicadoDepoisDe ";
+        }
+
+        if (filtro.getPublicadoAntesDe() != null){
+            where += " and l.dataPublicacao < :publicadoAntesDe ";
         }
 
         if (filtro.getEmprestado() != null){
-            if(filtro.getEmprestado()){
-                where += " and  EMPRESTIMOS.ID IS NULL ";
+            if(!filtro.getEmprestado()){
+                where += " and  e.id IS NULL ";
             }else{
-                where += " and  EMPRESTIMOS.ID IS NOT NULL ";
+                where += " and  e.id IS NOT NULL ";
             }
         }
 
-        Query<Livro> query = session.createQuery("select l from Livro l left join l.emprestimo e " + where, Livro.class);
-        return query.list();
+        String hql = "select l from Livro l left join l.emprestimo e ";
+        Query<Livro> query = session.createQuery(hql + where, Livro.class);
+        if (!filtro.getNomGenRes().equals("")){
+            query.setParameter("nomGenRes", filtro.getNomGenRes());
+        }
+        if (filtro.getEmprestadoAntesDe() != null){
+            query.setParameter("emprestadoAntesDe", filtro.getEmprestadoAntesDe());
+        }
+        if (filtro.getEmprestadoDepoisDe() != null){
+            query.setParameter("emprestadoDepoisDe", filtro.getEmprestadoDepoisDe());
+        }
+        if (filtro.getPublicadoDepoisDe() != null){
+            query.setParameter("publicadoDepoisDe", filtro.getPublicadoDepoisDe());
+        }
+        if (filtro.getPublicadoAntesDe() != null){
+            query.setParameter("publicadoAntesDe", filtro.getPublicadoAntesDe());
+        }
+        list = query.list();
+
+
+        session.close();
+        return list;
     }
 }

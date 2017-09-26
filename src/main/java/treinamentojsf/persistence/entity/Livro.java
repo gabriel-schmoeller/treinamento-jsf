@@ -10,6 +10,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+
 /**
  * Created by Lais Lodi on 28/08/2017.
  */
@@ -87,6 +88,8 @@ public class Livro {
     public boolean estaEmprestado(){
         return emprestimo != null;
     }
+
+
 
     @Override
     public String toString() {

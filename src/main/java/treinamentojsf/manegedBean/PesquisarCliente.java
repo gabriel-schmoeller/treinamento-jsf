@@ -13,7 +13,7 @@ import javax.faces.bean.ManagedBean;
 @ManagedBean(name = "psqCli")
 public class PesquisarCliente {
 
-    private FiltroCliente filtro;
+    private FiltroCliente filtro = new FiltroCliente();
 
     public FiltroCliente getFiltro() {
         return filtro;

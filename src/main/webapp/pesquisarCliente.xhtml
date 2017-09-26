@@ -20,8 +20,8 @@
             <p:panel id="basic" header="#{constantes.psqClientes}" footer="#{constantes.psqClientes}" style="margin-bottom:20px">
 
                 <h:panelGrid id="panelGrid" columns="2" cellpadding="20">
-                    <p:outputLabel id="lblEmprestado" value="Possui Livros: "/>
-                    <p:selectOneRadio id="emprestado">
+                    <p:outputLabel id="lblEmprestado" value="Possui Livros: "  />
+                    <p:selectOneRadio id="emprestado" value="#{psqCli.filtro.emprestado}" >
                         <f:selectItem itemLabel="Sim" itemValue="Sim" />
                         <f:selectItem itemLabel="Não" itemValue="Não" />
                         <f:selectItem itemLabel="Ambos" itemValue="Ambos" />
@@ -38,9 +38,6 @@
                     	
                 <h:panelGrid id="painelGrid3" columns="1" cellpadding="20">
                     <p:dataTable var="cliente" value="#{psqCli.listar()}">
-                        <p:column headerText="Id">
-                            <h:outputText value="#{cliente.id}" />
-                        </p:column>
 
                         <p:column headerText="Nome">
                             <h:outputText value="#{cliente.nome}" />
