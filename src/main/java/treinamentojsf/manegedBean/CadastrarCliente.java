@@ -3,6 +3,7 @@ package treinamentojsf.manegedBean;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.primefaces.context.RequestContext;
 import treinamentojsf.persistence.SessionFactoryHolder;
 import treinamentojsf.persistence.entity.Cliente;
 
@@ -31,7 +32,9 @@ public class CadastrarCliente {
         transaction.commit();
         session.close();
 
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Informação armazenada com Sucesso!"));
+        RequestContext.getCurrentInstance().reset("form:panel");
+
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Cliente salvo com Sucesso!"));
     }
 
 }

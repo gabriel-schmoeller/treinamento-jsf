@@ -61,7 +61,7 @@ public class PesquisarLivro {
         String hql = "select l from Livro l left join l.emprestimo e ";
         Query<Livro> query = session.createQuery(hql + where, Livro.class);
         if (!filtro.getNomGenRes().equals("")){
-            query.setParameter("nomGenRes", filtro.getNomGenRes());
+            query.setParameter("nomGenRes", "%" + filtro.getNomGenRes() + "%");
         }
         if (filtro.getEmprestadoAntesDe() != null){
             query.setParameter("emprestadoAntesDe", filtro.getEmprestadoAntesDe());

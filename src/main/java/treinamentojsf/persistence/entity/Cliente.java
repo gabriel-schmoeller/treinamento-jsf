@@ -1,12 +1,6 @@
 package treinamentojsf.persistence.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by Lais Lodi on 28/08/2017.
@@ -27,6 +21,8 @@ public class Cliente {
     private String email;
     @Column(name = "TELEFONE", nullable = false)
     private String telefone;
+    @OneToOne(mappedBy = "cliente")
+    private Emprestimo emprestimo;
 
     public Cliente(){}
 

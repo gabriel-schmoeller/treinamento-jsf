@@ -19,28 +19,31 @@ public class PesquisarCliente {
         return filtro;
     }
 
-    public List<Cliente> listar(){
-    //SessionFactory sessionFactory = SessionFactoryHolder.getSessionFactory();
+    public List<Cliente> listarComFiltro(){
         Session session = SessionFactoryHolder.openSession();
+        String where = " where 1 = 1 ";
+        List<Cliente> list;
 
-        Query<Cliente> query = session.createQuery("select c from Cliente c", Cliente.class);
-        List<Cliente> list = query.list();
+        if (!filtro.getNomeEmail().equals("")){
+            where += " and (c.nome like :nomeEmail or c.email like :nomeEmail) ";
+        }
+
+        if (filtro.getPossuiEmprestimo() != null){
+            if(!filtro.getPossuiEmprestimo()){
+                where += " and  e.id IS NULL ";
+            }else{
+                where += " and  e.id IS NOT NULL ";
+            }
+        }
+
+        String hql = "select c from Cliente c left join c.emprestimo e ";
+        Query<Cliente> query = session.createQuery(hql + where, Cliente.class);
+        if (!filtro.getNomeEmail().equals("")){
+            query.setParameter("nomeEmail", "%" + filtro.getNomeEmail() + "%");
+        }
+        list = query.list();
+
         session.close();
         return list;
-    }
-
-    public List<Cliente> listarComFiltro(FiltroCliente filtro){
-        Session session = SessionFactoryHolder.openSession();
-        String where = "";
-
-        if (filtro != null) {
-            where = " nome like %" + filtro.getNome() + "% and " +
-                    " cpf like %" + filtro.getCpf() + "% and " +
-                    " email like %" + filtro.getEmail() + "% and " +
-                    " telefone like %" + filtro.getTelefone() + "%";
-
-        }
-        Query<Cliente> query = session.createQuery("select c from Cliente c " + where, Cliente.class);
-        return query.list();
     }
 }

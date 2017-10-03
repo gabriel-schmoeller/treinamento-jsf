@@ -12,7 +12,7 @@
 <h:body>
     <h1>#{constantes.h1}</h1>
 
-    <h:form>
+    <h:form id="principal">
         <h:panelGrid columns="2" cellpadding="20">
 
             <ui:include src="menu.xhtml" />
@@ -29,12 +29,14 @@
                     <p:inputMask id="inTel" mask="(99)99999-9999" size="70" placeholder="Telefone" value="#{cadCli.cliente.telefone}"/>
 
                     <p:outputLabel id="lblEmail" for="inEmail" value="E-mail: "/>
-                    <p:inputText id="inEmail">
+                    <p:inputText id="inEmail" value="#{cadCli.cliente.email}">
                         <p:keyFilter regEx="/[a-z0-9_\.\-@]/i"/>
                     </p:inputText>
                     <!--<p:inputText id="inEmail" size="70" placeholder="E-mail" value="#{cadCli.cliente.email}"/>-->
 
-                    <p:commandButton id="btnClientesSalvar" value="Salvar" actionListener="#{cadCli.salvar}" />
+                    <p:commandButton id="btnClientesSalvar" value="Salvar" actionListener="#{cadCli.salvar()}" >
+                        <p:resetInput target="basic" />
+                    </p:commandButton>
                 </h:panelGrid>
             </p:panel>
         </h:panelGrid>

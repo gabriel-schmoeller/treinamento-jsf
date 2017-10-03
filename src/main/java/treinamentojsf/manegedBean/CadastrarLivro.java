@@ -34,6 +34,6 @@ public class CadastrarLivro {
 
         RequestContext.getCurrentInstance().reset("form:panel");
 
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Informação armazenada com Sucesso!"));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Livro salvo com Sucesso!"));
     }
 }

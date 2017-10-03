@@ -31,6 +31,9 @@ public class Emprestimo {
     @OneToOne
     @JoinColumn(name = "LIVROS_ID", updatable = false, insertable = false)
     private Livro livro;
+    @OneToOne
+    @JoinColumn(name = "CLIENTES_ID", updatable = false, insertable = false)
+    private Cliente cliente;
 
     public Emprestimo(){}
 

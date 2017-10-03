@@ -21,23 +21,23 @@
 
                 <h:panelGrid id="panelGrid" columns="2" cellpadding="20">
                     <p:outputLabel id="lblEmprestado" value="Possui Livros: "  />
-                    <p:selectOneRadio id="emprestado" value="#{psqCli.filtro.emprestado}" >
-                        <f:selectItem itemLabel="Sim" itemValue="Sim" />
-                        <f:selectItem itemLabel="Não" itemValue="Não" />
-                        <f:selectItem itemLabel="Ambos" itemValue="Ambos" />
+                    <p:selectOneRadio id="emprestado" value="#{psqCli.filtro.possuiEmprestimo}" >
+                        <f:selectItem itemLabel="Sim" itemValue="#{true}" />
+                        <f:selectItem itemLabel="Não" itemValue="#{false}" />
+                        <f:selectItem itemLabel="Ambos" itemValue="#{null}" />
                     </p:selectOneRadio>
                 </h:panelGrid>
 
                 <h:panelGrid id="painelGrid2" columns="2" cellpadding="10">
                     <p:outputLabel id="lblNomeEmail" for="inNomeEmail" value="Nome ou Email: "/>
-                    <p:inputText id="inNomeEmail" size="50" placeholder="Nome ou Email" />
+                    <p:inputText id="inNomeEmail" size="50" placeholder="Nome ou Email"
+                                 value="#{psqCli.filtro.nomeEmail}" />
                 </h:panelGrid>
                 
-                <p:commandButton id="btnClientePsq" value="Pesquisar" 
-                    	actionListener="psqCLi.listarComFiltro()"/>
+                <p:commandButton id="btnClientePsq" value="Pesquisar" ajax="false" />
                     	
                 <h:panelGrid id="painelGrid3" columns="1" cellpadding="20">
-                    <p:dataTable var="cliente" value="#{psqCli.listar()}">
+                    <p:dataTable var="cliente" value="#{psqCli.listarComFiltro()}">
 
                         <p:column headerText="Nome">
                             <h:outputText value="#{cliente.nome}" />
