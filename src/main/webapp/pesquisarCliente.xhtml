@@ -33,9 +33,9 @@
                     <p:inputText id="inNomeEmail" size="50" placeholder="Nome ou Email"
                                  value="#{psqCli.filtro.nomeEmail}" />
                 </h:panelGrid>
-                
+
                 <p:commandButton id="btnClientePsq" value="Pesquisar" ajax="false" />
-                    	
+
                 <h:panelGrid id="painelGrid3" columns="1" cellpadding="20">
                     <p:dataTable var="cliente" value="#{psqCli.listarComFiltro()}">
 
@@ -52,7 +52,9 @@
                         </p:column>
 
                         <p:column headerText="Ações">
-                            <p:link outcome="detalharCliente" value="Detalhar" onclick="#{dtlCliente.detalharCliente(cliente)}"/>
+                            <p:link outcome="detalharCliente" value="Detalhar">
+                                <f:param name="id" value="#{cliente.id}" />
+                            </p:link>
                         </p:column>
 
                     </p:dataTable>

@@ -1,27 +1,34 @@
 package treinamentojsf.manegedBean;
 
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import treinamentojsf.persistence.SessionFactoryHolder;
 import treinamentojsf.persistence.entity.Cliente;
 import treinamentojsf.persistence.entity.Emprestimo;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 @ManagedBean(name = "dtlCliente")
 public class DetalharCliente {
 
-    private Cliente cliente = new Cliente();
-    private Emprestimo emprestimo = new Emprestimo();
+    private Cliente cliente;
 
-    public Cliente detalharCliente(Cliente cliente){
-        if (cliente != null){
-            Session session = SessionFactoryHolder.openSession();
-            String where = " where c.id = " + cliente.getId();
-            session.createQuery("select c from Cliente c " + where, Cliente.class);
+    public DetalharCliente(){
+        Session session = SessionFactoryHolder.getSessionFactory().openSession();
 
+        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        String parameter = req.getParameter("id");
+        Integer id = Integer.valueOf(parameter);
 
-        }
-        return null;
+        Query<Cliente> query = session.createQuery("SELECT c FROM Cliente c WHERE c.id = :id", Cliente.class);
+        query.setParameter("id", id);
+
+        this.cliente = query.getSingleResult();
+        cliente.getEmprestimos();
+
+        session.close();
     }
 
     public Cliente getCliente() {
@@ -30,13 +37,5 @@ public class DetalharCliente {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
-    }
-
-    public Emprestimo getEmprestimo() {
-        return emprestimo;
-    }
-
-    public void setEmprestimo(Emprestimo emprestimo) {
-        this.emprestimo = emprestimo;
     }
 }

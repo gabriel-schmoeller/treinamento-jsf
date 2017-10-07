@@ -36,7 +36,7 @@ public class PesquisarCliente {
             }
         }
 
-        String hql = "select c from Cliente c left join c.emprestimo e ";
+        String hql = "select c from Cliente c left join c.emprestimos e ";
         Query<Cliente> query = session.createQuery(hql + where, Cliente.class);
         if (!filtro.getNomeEmail().equals("")){
             query.setParameter("nomeEmail", "%" + filtro.getNomeEmail() + "%");

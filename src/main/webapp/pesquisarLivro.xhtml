@@ -81,7 +81,9 @@
                         </p:column>
 
                         <p:column headerText="Ações">
-                            <p:link outcome="detalharLivro" value="Detalhar"/>
+                            <p:link outcome="detalharLivro" value="Detalhar">
+                                <f:param name="id" value="#{livro.id}" />
+                            </p:link>
                         </p:column>
 
                     </p:dataTable>

@@ -30,15 +30,15 @@
                 <p:outputLabel id="optTelefoneValue" value="#{dtlCliente.cliente.telefone}" />
                 <p:outputLabel id="lblDesde" value="Desde: " />
                 <p:outputLabel id="optDesdeValue" value="{}" />
-                
-                <p:commandButton id="editar" value="Editar" actionListener="dtlCliente.editar()" />
-                
+
+                <p:commandButton id="editar" value="Editar"  />
+
             </p:panel>
-            
-            <p:panel id="basic" header="#{constantes.livrosCliente}" footer="#{constantes.livrosCliente}" 
+
+            <p:panel id="basic" header="#{constantes.livrosCliente}" footer="#{constantes.livrosCliente}"
             	style="margin-bottom:20px">
 
-                <p:dataTable var="emprestimo" value="emprestimo" >
+                <p:dataTable var="emprestimo" value="#{dtlCliente.cliente.emprestimos}" >
                 	<p:column headerText="Id">
                             <h:outputText value="#{emprestimo.id}" />
                         </p:column>
@@ -56,14 +56,16 @@
                         </p:column>
 
                         <p:column headerText="Ações">
-                            <p:link outcome="detalharEmprestimo" value="Visualizar"/>
+                            <p:link outcome="detalharLivro" value="Detalhar">
+                                <f:param name="id" value="#{emprestimo.livrosId}" />
+                            </p:link>
                         </p:column>
                 </p:dataTable>
-                
-                <p:commandButton id="editar" value="Editar" actionListener="dtlCliente.editar()"/>
-                
+
+                <p:commandButton id="editar" value="Editar" />
+
             </p:panel>
-            
+
         </h:panelGrid>
     </h:form>
 

@@ -6,6 +6,10 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
+<f:metadata>
+    <f:viewParam name="id" value="#{dtlLivro.livro.id}" />
+</f:metadata>
+
 <h:head>
     <title>#{constantes.titulo}</title>
 </h:head>
@@ -17,31 +21,31 @@
 
             <ui:include src="menu.xhtml" />
 
-            <p:panel id="basic" header="#{constantes.dtlLivro}" footer="#{constantes.dtlLivro}" 
+            <p:panel id="basic" header="#{constantes.dtlLivro}" footer="#{constantes.dtlLivro}"
             	style="margin-bottom:20px">
 
                 <p:outputLabel id="lblNome" value="Título: "/>
-                <p:inputText id="optNomeValue" value="{}"/>
+                <p:inputText id="optNomeValue" value="#{dtlLivro.livro.nome}"/><br/>
                 <p:outputLabel id="lblGenero" value="Gênero: "/>
-                <p:inputText id="optGeneroValue" value="{}"/>
+                <p:inputText id="optGeneroValue" value="#{dtlLivro.livro.genero}"/><br/>
                 <p:outputLabel id="lblDtPub" value="Data de Publicação: "/>
-                <p:inputText id="optDtPubValue" value="{}"/>
+                <p:inputText id="optDtPubValue" value="#{dtlLivro.livro.dataPublicacao}"/><br/>
                 <p:outputLabel id="lblResumo" value="Resumo: "/>
-                <p:inputText id="optResumoValue" value="{}"/>
+                <p:inputText id="optResumoValue" value="#{dtlLivro.livro.resumo}"/><br/>
                 <p:outputLabel id="lblEmprestadoPara" value="Emprestado para: "/>
-                <p:inputText id="optEmprestadoParaValue" value="{}"/>
+                <p:inputText id="optEmprestadoParaValue" value="#{dtlLivro.livro.estaEmprestado()}"/><br/>
                 <p:outputLabel id="lblDesde" value="Desde: "/>
-                <p:inputText id="optDesdeValue" value="{}"/>
-                
-                
+                <p:inputText id="optDesdeValue" value="#{dtlLivro.livro.emprestimo.dataEmprestimo}"/><br/>
+
+
                 <h:panelGrid id="panelGrid" columns="3">
-                	<p:commandButton id="devolver" value="Devolver" 
+                	<p:commandButton id="devolver" value="Devolver"
                 		actionListener="dtlLivro.devolver({clienteId},{livroId})"/>
                 	<p:commandButton id="emprestar" value="Emprestar"
                 		actionListener="dtlLivro.emprestar({clienteId},{livroId})"/>
                 	<p:commandButton id="editar" value="Editar" actionListener="dtlLivro.editar()"/>
                 </h:panelGrid>
-                
+
             </p:panel>
         </h:panelGrid>
     </h:form>

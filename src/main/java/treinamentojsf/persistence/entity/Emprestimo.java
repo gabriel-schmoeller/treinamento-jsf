@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -31,7 +32,7 @@ public class Emprestimo {
     @OneToOne
     @JoinColumn(name = "LIVROS_ID", updatable = false, insertable = false)
     private Livro livro;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "CLIENTES_ID", updatable = false, insertable = false)
     private Cliente cliente;
 

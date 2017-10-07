@@ -1,6 +1,15 @@
 package treinamentojsf.persistence.entity;
 
-import javax.persistence.*;
+import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
  * Created by Lais Lodi on 28/08/2017.
@@ -21,8 +30,8 @@ public class Cliente {
     private String email;
     @Column(name = "TELEFONE", nullable = false)
     private String telefone;
-    @OneToOne(mappedBy = "cliente")
-    private Emprestimo emprestimo;
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
+    private List<Emprestimo> emprestimos;
 
     public Cliente(){}
 
@@ -72,6 +81,14 @@ public class Cliente {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Emprestimo> getEmprestimos() {
+        return emprestimos;
+    }
+
+    public void setEmprestimos(List<Emprestimo> emprestimos) {
+        this.emprestimos = emprestimos;
     }
 
     @Override
